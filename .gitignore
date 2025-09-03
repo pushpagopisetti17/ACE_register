@@ -2,7 +2,7 @@
 /backend/cred.env
 /backend/credentials.json
 /backend/members.db
-
+members.db
 # === Environment files ===
 .env
 *.env
