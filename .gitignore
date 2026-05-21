@@ -1,18 +1,22 @@
 # === Secrets (DO NOT COMMIT) ===
-/backend/cred.env
-/backend/credentials.json
-/backend/members.db
+/backend/.env
+/frontend/.env
 members.db
+
+# Allow example files (safe to commit)
+!.env.example
+!**/.env.example
+
 # === Environment files ===
-.env
 *.env
 .env.*.local
+.env.local
 
 # === Node modules ===
 node_modules/
 
 # === Build outputs ===
-project/dist/
+frontend/dist/
 backend/dist/
 dist/
 build/

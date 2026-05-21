@@ -49,7 +49,7 @@ const Registration = () => {
     } = formData;
 
     if (
-      !fullName || !phone || !department || !year ||phone.length!=10||
+      !fullName || !phone || !department || !year || phone.length != 10 ||
       !gender || interests.length === 0 || !paymentMode || !goodies
     ) {
       alert('Please fill in all required fields');
@@ -59,7 +59,7 @@ const Registration = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5001/register", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -94,7 +94,7 @@ const Registration = () => {
           goodies: ''
         });
       } else {
-        if (result?.error === "Phone number already exists") {
+        if (result?.error === "Phone number already registered") {
           setShowDuplicateError(true);
         } else {
           alert(result?.error || "Something went wrong.");
@@ -202,7 +202,7 @@ const Registration = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Year of Study *</label>
               <div className="space-y-2">
-                {["1st Year Fresher", "2nd Year Lateral"].map(year => (
+                {["1st Year", "2nd Year"].map(year => (
                   <label key={year} className="flex items-center">
                     <input
                       type="radio"
@@ -299,11 +299,10 @@ const Registration = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-4 px-6 rounded-lg font-semibold text-lg shadow-lg transition-all duration-200 ${
-                isSubmitting
+              className={`w-full py-4 px-6 rounded-lg font-semibold text-lg shadow-lg transition-all duration-200 ${isSubmitting
                   ? 'bg-blue-400 cursor-not-allowed'
                   : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105 text-white'
-              }`}
+                }`}
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center">
