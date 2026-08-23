@@ -1,69 +1,89 @@
 import React from 'react';
-import { ArrowRight, Users, Code, Trophy } from 'lucide-react';
+import { ArrowDown, Sparkles } from 'lucide-react';
 
 const Hero = () => {
   const scrollToRegistration = () => {
     const element = document.getElementById('register');
+
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section 
-      id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundSize: 'cover',backgroundColor:'#87CEEB',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
-      }}
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      <div className="absolute inset-0 bg-black/30"></div>
-      <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      {/* Background glow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
+
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl" />
+
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl" />
+      </div>
+
+      {/* Grid */}
+      <div className="absolute inset-0 hero-grid opacity-40" />
+
+      {/* Main content */}
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-24">
+
+        {/* ACE Logo */}
         <div className="mb-8">
-          <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3_eQb1bwb-FBrRt1TwBDc4YGc8N1fuSziaA&s" 
-            alt="ACE Logo" 
-            className="h-20 w-20 sm:h-24 sm:w-24 mt-11 mx-auto mb-6 rounded-full border-4 border-white/30 shadow-2xl backdrop-blur-sm"
+          <img
+            src="/images/ace-logo.jpg"
+            alt="ACE Logo"
+            className="h-24 w-24 sm:h-28 sm:w-28 mx-auto object-contain rounded-full border-2 border-cyan-300/50 shadow-2xl shadow-cyan-500/20"
           />
         </div>
-        
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          <span className="text-blue-400 drop-shadow-lg text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Welcome to ACE</span>
-          <br />
-          <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-gray-100">
-            Innovate. Lead. Excel.
+
+        {/* Small label */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-7 rounded-full border border-cyan-400/25 bg-cyan-400/5 text-cyan-300 text-xs sm:text-sm tracking-wide">
+          <Sparkles size={15} />
+          Association of Computer Engineers
+        </div>
+
+        {/* Main heading */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-5">
+          <span className="text-white">
+            Welcome to{' '}
+          </span>
+
+          <span className="text-cyan-300 neon-text">
+            ACE
           </span>
         </h1>
-        
-        <p className="text-lg sm:text-xl md:text-2xl mb-10 text-gray-100 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
+
+        {/* Tagline */}
+        <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-[0.25em] text-gray-300 mb-7">
+          Innovate. Lead. Excel.
+        </h2>
+
+        {/* Description */}
+        <p className="text-gray-400 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
           The Official CSE Student Club at SRKR Engineering College
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
-          <div className="flex items-center space-x-3 bg-white/20 backdrop-blur-md px-4 sm:px-6 py-3 rounded-full text-base sm:text-lg border border-white/30">
-            <Code size={24} />
-            <span>CSE Powered</span>
-          </div>
-          <div className="flex items-center space-x-3 bg-white/20 backdrop-blur-md px-4 sm:px-6 py-3 rounded-full text-base sm:text-lg border border-white/30">
-            <Users size={24} />
-            <span>Student Driven</span>
-          </div>
-          <div className="flex items-center space-x-3 bg-white/20 backdrop-blur-md px-4 sm:px-6 py-3 rounded-full text-base sm:text-lg border border-white/30">
-            <Trophy size={24} />
-            <span>Future Focused</span>
-          </div>
-        </div>
-        
+        {/* Register button */}
         <button
           onClick={scrollToRegistration}
-          className="inline-flex items-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 sm:py-5 px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 text-lg sm:text-xl"
+          className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-cyan-400 text-black font-bold text-lg transition-all duration-300 hover:bg-cyan-300 hover:scale-105 shadow-xl shadow-cyan-500/20"
         >
           <span>Register Now</span>
-          <ArrowRight size={24} />
+
+          <ArrowDown
+            size={21}
+            className="group-hover:translate-y-1 transition-transform"
+          />
         </button>
+
+        {/* Small bottom text */}
+        <p className="mt-8 text-xs text-gray-600 tracking-wider">
+          SRKR ENGINEERING COLLEGE • CSE STUDENT CLUB
+        </p>
+
       </div>
     </section>
   );
