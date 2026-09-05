@@ -680,164 +680,313 @@ app.post(
                         // ── Email body ──────────────────────────────────────
 
                         const emailBody = `
-
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b0b0f;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+    }
 
-<title>ACE Enrollment Confirmation</title>
+    .wrapper {
+      width: 100%;
+      background-color: #0b0b0f;
+      padding: 30px 0;
+    }
 
-<style>
+    .container {
+      max-width: 680px;
+      margin: auto;
+      background-color: #15151c;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #2b2b35;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+    .header img {
+      width: 100%;
+      display: block;
+    }
 
-.container {
-    max-width: 700px;
-    margin: 30px auto;
-    border: 1px solid #014099;
-    border-radius: 8px;
-    overflow: hidden;
-}
+    .content {
+      padding: 30px;
+    }
 
-.header img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+    h1 {
+      margin: 0 0 15px;
+      font-size: 28px;
+      color: #ffffff;
+    }
 
-.content {
-    padding: 30px;
-    background: #ffffff;
-}
+    h2 {
+      color: #ffffff;
+      margin-top: 28px;
+      font-size: 21px;
+    }
 
-.content h1 {
-    color: #1a1a1a;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
+    p {
+      color: #d5d5dc;
+      font-size: 15px;
+      line-height: 1.7;
+    }
 
-.content p {
-    color: #333;
-    line-height: 1.6;
-    font-size: 16px;
-}
+    .highlight {
+      color: #ffffff;
+      font-weight: bold;
+    }
 
-.features {
-    margin-top: 20px;
-    padding-left: 20px;
-}
+    .credentials {
+      margin-top: 25px;
+      background: #1e1e27;
+      border: 1px solid #343441;
+      border-radius: 12px;
+      padding: 22px;
+    }
 
-.features li {
-    margin-bottom: 10px;
-}
+    .credentials-title {
+      font-size: 19px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
 
-.footer {
-    padding: 20px 30px;
-    background: #014099;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-}
+    .row {
+      padding: 9px 0;
+      border-bottom: 1px solid #30303a;
+      font-size: 14px;
+    }
 
-.footer a {
-    color: #fff;
-    text-decoration: underline;
-}
+    .row:last-child {
+      border-bottom: none;
+    }
 
-.highlight {
-    color: #0057b8;
-    font-weight: bold;
-}
+    .label {
+      color: #9999a5;
+      display: inline-block;
+      width: 150px;
+    }
 
-</style>
+    .value {
+      color: #ffffff;
+      font-weight: bold;
+    }
 
+    .learn-box {
+      margin-top: 25px;
+      background: #1b1b24;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .learn-box ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .learn-box li {
+      color: #d5d5dc;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .certificate {
+      margin-top: 25px;
+      padding: 18px;
+      background: #20202a;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .certificate p {
+      margin: 5px 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      background: #0052B8;
+      color: #9999a5;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .content {
+        padding: 20px;
+      }
+
+      .label {
+        display: block;
+        width: auto;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-<div class="header">
+  <div class="container">
 
-<img
-src="https://res.cloudinary.com/domogztsv/image/upload/v1755586033/letter_header_daa86v.jpg"
-alt="ACE Header">
+    <!-- GAME THEME HEADER -->
+    <div class="header">
+      <img
+        src="${process.env.EMAIL_HEADER_URL}"
+        alt="SRKR ACE"
+      >
+    </div>
 
-</div>
+    <div class="content">
 
-<div class="content">
+      <h1>🎮 Welcome to ACE!</h1>
 
-<h1>Dear ${name},</h1>
+      <p>
+        Hi <span class="highlight">${name}</span>,
+      </p>
 
-<p>
-We're absolutely thrilled to welcome you to the
-<span class="highlight">ACE community</span>! 🌟
-Your registration is officially complete.
-</p>
+      <p>
+        Congratulations! Your registration for
+        <strong>ACE – Association of Computer Engineers</strong>
+        has been successfully completed.
+      </p>
 
-<p>
-From all of us at ACE —
-<strong>thank you for joining us</strong>.
-You're now part of a vibrant and growing family that celebrates ideas,
-empowers innovation, and believes in lifting each other higher.
-</p>
+      <p>
+        Your journey begins here. Get ready to
+        <strong>Level Up Your Skills, Build, Create & Grow.</strong>
+      </p>
 
-<p>
-<strong>As a member of ACE, you'll have access to:</strong>
-</p>
+      <!-- CREDENTIALS -->
+      <div class="credentials">
 
-<ul class="features">
+        <div class="credentials-title">
+          🎯 Your ACE Credentials
+        </div>
 
-<li>✨ Inspiring events and workshops</li>
+        <div class="row">
+          <span class="label">ACE Regd. ID</span>
+          <span class="value">${ace_id}</span>
+        </div>
 
-<li>🤝 A network of passionate changemakers</li>
+        <div class="row">
+          <span class="label">Name</span>
+          <span class="value">${name}</span>
+        </div>
 
-<li>🚀 Opportunities to lead, learn, and grow</li>
+        <div class="row">
+          <span class="label">Department</span>
+          <span class="value">${branch}</span>
+        </div>
 
-<li>🎯 A platform to turn your ideas into impact</li>
+        <div class="row">
+          <span class="label">Year of Study</span>
+          <span class="value">${year}</span>
+        </div>
 
-</ul>
+        <div class="row">
+          <span class="label">Goodies</span>
+          <span class="value">${goodies || "—"}</span>
+        </div>
 
-<p>
-Your enrollment certificate is attached to this email.
-<strong>Welcome aboard — your ACE journey starts now.</strong>
-</p>
+      </div>
 
-<p>
-Warm wishes,<br>
-<strong>Team ACE</strong><br>
-<em>Where Ambition Meets Action</em>
-</p>
+      <!-- WHAT YOU WILL LEARN -->
+      <div class="learn-box">
 
-</div>
+        <h2>🚀 What You'll Learn & Gain</h2>
 
-<div class="footer">
+        <ul>
+          <li>
+            💻 Hands-on exposure to modern technologies and development tools
+          </li>
 
-Follow us on Social Media &nbsp;
+          <li>
+            🧠 Practical knowledge through workshops and technical sessions
+          </li>
 
-<a
-href="${link}"
-target="_blank"
->
-${link}
-</a>
+          <li>
+            🤝 Collaboration and teamwork through real-world activities
+          </li>
 
-</div>
+          <li>
+            🛠️ Problem-solving and project-building skills
+          </li>
+
+          <li>
+            🎤 Communication, leadership and presentation skills
+          </li>
+
+          <li>
+            🌱 Opportunities to explore, experiment and continuously grow
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- CERTIFICATE -->
+      <div class="certificate">
+
+        <h2>🏆 Your Certificate</h2>
+
+        <p>
+          Your ACE registration certificate is attached to this email
+          as a PDF.
+        </p>
+
+        <p>
+          Please keep it safely for your future reference.
+        </p>
+
+      </div>
+
+      <p style="margin-top:30px;">
+        Once again, welcome to ACE! 🎮
+      </p>
+
+      <p>
+        Let's learn, build, compete and <strong>level up together.</strong>
+      </p>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+      <p>
+        Follow us on Social Media
+      </p>
+
+      <p>
+        <a href="${process.env.INSTAGRAM_URL || '#'}">
+          Instagram
+        </a>
+      </p>
+
+      <p>
+        © 2026 ACE — Association of Computer Engineers
+      </p>
+
+    </div>
+
+  </div>
 
 </div>
 
 </body>
-
 </html>
-
 `;
 
 
